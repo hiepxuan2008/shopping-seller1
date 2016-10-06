@@ -154,13 +154,35 @@ def response_go_shopping(sender_id):
                 }
             ]
         }]
-    
+
     send_generic_template(sender_id, elements)
+
+
+def response_shop_location(sender_id):
+    elements = [
+        {
+            'title': "Nova Shop",
+            'subtitle': "227 Nguyen Van Cu, D5, HCM city",
+            'image_url': 'http://staticmap.openstreetmap.de/staticmap.php?center=10.762952,106.682340&zoom=15&size=640x480&markers=10.762952,106.682340,ol-marker',
+            'buttons': [{
+                'type': 'web_url',
+                'url': 'http://maps.google.com/maps?q=loc:10.762952,106.682340&z=20',
+                'title': "Show directions"
+            }
+            ]
+        }
+    ]
+    send_generic_template(sender_id, elements)
+
+    pass
 
 
 def on_postback_received(sender_id, payload):
     if payload == "GO_SHOPPING":
         response_go_shopping(sender_id)
+    elif payload == "SHOP_LOCATION":
+        response_shop_location(sender_id)
+
     pass
 
 def send_typing_on(recipient_id):

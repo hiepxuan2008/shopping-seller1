@@ -177,11 +177,41 @@ def response_shop_location(sender_id):
     pass
 
 
+def response_call_for_help(sender_id):
+    phone_number = "+84983892316"
+
+    data = json.dumps({
+      "recipient":{
+        "id":"USER_ID"
+      },
+      "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"What do you want to do next?",
+            "buttons":[
+                {
+                    "type": "phone_number",
+                    "title": "Call For Help",
+                    "payload": phone_number
+                }
+            ]
+          }
+        }
+      }
+    })
+
+    call_send_api(data)
+
+
 def on_postback_received(sender_id, payload):
     if payload == "GO_SHOPPING":
         response_go_shopping(sender_id)
     elif payload == "SHOP_LOCATION":
         response_shop_location(sender_id)
+    elif payload == "CALL_FOR_HELP":
+        response_call_for_help(sender_id)
 
     pass
 

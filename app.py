@@ -182,18 +182,18 @@ def response_call_for_help(sender_id):
 
     data = json.dumps({
       "recipient":{
-        "id":"USER_ID"
+        "id":sender_id
       },
       "message":{
         "attachment":{
           "type":"template",
           "payload":{
             "template_type":"button",
-            "text":"What do you want to do next?",
+            "text":"Call for help",
             "buttons":[
                 {
                     "type": "phone_number",
-                    "title": "Call For Help",
+                    "title": "HotLine",
                     "payload": phone_number
                 }
             ]

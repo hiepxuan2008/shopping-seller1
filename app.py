@@ -55,6 +55,7 @@ def on_message_received(sender_id, message):
     if not message.get("text"):
         return
 
+    send_typing_on(sender_id)
     message_text = message["text"]
     if message_text == "hello":
         send_text_message(sender_id, "hi")
@@ -64,6 +65,16 @@ def on_message_received(sender_id, message):
 def on_postback_received(sender_id, payload):
 
     pass
+
+def send_typing_on(recipient_id):
+    data = json.dumps({
+      "recipient":{
+        "id":recipient_id
+      },
+      "sender_action":"typing_on"
+    })
+
+    call_send_api(data)
 
 # Send Message
 # https://developers.facebook.com/docs/messenger-platform/send-api-reference/text-message
